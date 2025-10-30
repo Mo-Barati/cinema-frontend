@@ -148,14 +148,14 @@ export default function Showtimes() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#f8fafc" }}>
-      <header style={{ position: "sticky", top: 0, background: "white", padding: "12px 16px", borderBottom: "1px solid #e5e7eb" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", maxWidth: 960, margin: "0 auto" }}>
+      <header style={{ padding: "0 0 16px 0", background: "transparent" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
           <h1 style={{ fontSize: 20, fontWeight: 600 }}>🎬 Cinema Ticket Booking — Frontend (Phase 1)</h1>
           <span style={{ fontSize: 12, color: "#6b7280" }}>Backend: {BASE_URL}</span>
         </div>
       </header>
 
-      <main style={{ maxWidth: 960, margin: "0 auto", padding: 16 }}>
+      <main style={{ width: "100%" , margin: "0 auto", padding: 16 }}>
         {/* Search by cinema */}
         <section style={{ background: "white", padding: 16, borderRadius: 12, border: "1px solid #e5e7eb", marginBottom: 16 }}>
           <h2 style={{ fontSize: 16, fontWeight: 600, marginBottom: 8 }}>Find Showtimes by Cinema</h2>

@@ -1,3 +1,29 @@
+/* Prevent horizontal scroll globally */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+  background: #f9fafb;
+}
+
+/* Keep media/tables inside the viewport */
+img,
+table {
+  max-width: 100%;
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
