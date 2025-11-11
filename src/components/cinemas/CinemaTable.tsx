@@ -1,20 +1,14 @@
-type Cinema = {
-    id: number;
-    name: string;
-    address?: string;
-    city?: string;
-    postcode?: string;
-    phone?: string;
-    email?: string;
-};
+// cinema-frontend/src/components/cinemas/CinemaTable.tsx
+import type { Cinema } from "../../types/cinema";
 
 type Props = {
     items: Cinema[];
     onDelete: (row: Cinema) => Promise<void> | void;
     busyId: number | null;
+    onEdit: (row: Cinema) => void; // <-- important
 };
 
-export default function CinemaTable({ items, onDelete, busyId }: Props) {
+export default function CinemaTable({ items, onDelete, busyId, onEdit }: Props) {
     return (
         <div className="cinema-table-card" style={{ marginTop: 16, maxWidth: 980 }}>
             <table className="cinema-table">
@@ -46,8 +40,18 @@ export default function CinemaTable({ items, onDelete, busyId }: Props) {
                                 <td>{c.postcode || "—"}</td>
                                 <td>{c.phone || "—"}</td>
                                 <td>{c.email || "—"}</td>
-                                <td style={{ textAlign: "right" }}>
+                                <td style={{ textAlign: "right", whiteSpace: "nowrap" }}>
                                     <button
+                                        type="button"
+                                        className="btn-link"
+                                        style={{ marginRight: 8 }}
+                                        onClick={() => onEdit(c)}              // <-- fires the modal open
+                                        disabled={busyId === c.id}
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                        type="button"
                                         onClick={() => onDelete(c)}
                                         disabled={busyId === c.id}
                                         className="danger"
@@ -63,4 +67,3 @@ export default function CinemaTable({ items, onDelete, busyId }: Props) {
         </div>
     );
 }
-  

@@ -55,6 +55,7 @@ export default function CinemaForm({ onCreate, loading }: Props) {
                     placeholder="manager@cinema.com"
                 />
             </div>
+            {errors.email && <div style={{ color: "#dc2626", marginLeft: 140 }}>{errors.email}</div>}
 
             <div className="cinema-row">
                 <label>Phone</label>
@@ -64,6 +65,7 @@ export default function CinemaForm({ onCreate, loading }: Props) {
                     placeholder="+44 20 7946 0991"
                 />
             </div>
+            {errors.phone && <div style={{ color: "#dc2626", marginLeft: 140 }}>{errors.phone}</div>}
 
             <div className="cinema-row">
                 <label>Address</label>
@@ -93,7 +95,10 @@ export default function CinemaForm({ onCreate, loading }: Props) {
             </div>
 
             <div className="cinema-actions">
-                <button className="btn-primary" disabled={loading}>
+                <button
+                    className="btn-primary"
+                    disabled={loading || !isFormComplete(form)}
+                >
                     {loading ? "Adding…" : "Add Cinema"}
                 </button>
                 <button
@@ -105,5 +110,16 @@ export default function CinemaForm({ onCreate, loading }: Props) {
                 </button>
             </div>
         </form>
+    );
+}
+
+function isFormComplete(values: typeof initial) {
+    return (
+        values.name.trim() &&
+        values.email.trim() &&
+        values.phone.trim() &&
+        values.address.trim() &&
+        values.city.trim() &&
+        values.postcode.trim()
     );
 }
