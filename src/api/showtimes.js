@@ -28,3 +28,37 @@ export async function deleteShowtime(id) {
     const res = await fetch(`${API_BASE}/api/showtimes/${id}`, { method: "DELETE" });
     if (!res.ok) throw new Error(`Failed to delete showtime ${id}: ${res.status}`);
 }
+
+// --- Search by title (server-side) ---
+export async function searchShowtimes({ q }, signal) {
+    const term = encodeURIComponent(q || "");
+    const res = await fetch(`${API_BASE}/api/showtimes/search?q=${term}`, { signal });
+    if (!res.ok) throw new Error(`Failed to search showtimes: ${res.status}`);
+    return res.json();
+}
+
+// --- Window query by cinema + date-time range (server-side) ---
+export async function listShowtimesWindow({ cinemaId, from, to }, signal) {
+    const params = new URLSearchParams();
+    if (cinemaId != null) params.set("cinemaId", String(cinemaId));
+    if (from) params.set("from", from); // e.g. 2025-11-10T09:00
+    if (to) params.set("to", to);
+
+    const res = await fetch(`${API_BASE}/api/showtimes/window?${params.toString()}`, { signal });
+    if (!res.ok) throw new Error(`Failed to load showtimes window: ${res.status}`);
+    return res.json();
+}
+
+export async function filterShowtimes({ q, cinemaId, from, to }, signal) {
+    const params = new URLSearchParams();
+    if (q) params.set("q", q);
+    if (cinemaId != null && cinemaId !== "") params.set("cinemaId", String(cinemaId));
+    if (from) params.set("from", from);
+    if (to) params.set("to", to);
+
+    const res = await fetch(`${API_BASE}/api/showtimes/filter?${params.toString()}`, { signal });
+    if (!res.ok) throw new Error(`Failed to filter showtimes: ${res.status}`);
+    return res.json();
+}
+
+
