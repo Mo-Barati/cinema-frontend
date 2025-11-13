@@ -153,3 +153,183 @@ h3 {
   border-radius: 8px;
   cursor: pointer;
 }
+
+/* --- Seat map page --- */
+
+.seat-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.seat-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.seat-page-title h2 {
+  margin: 0;
+}
+
+.seat-page-subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.seat-screen-banner {
+  text-align: center;
+  margin: 0 auto 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  font-weight: 600;
+  max-width: 300px;
+}
+
+.seat-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  /* 👈 center rows under the screen banner */
+}
+.seat-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.seat-row-label {
+  width: 2rem;
+  text-align: right;
+  font-weight: 600;
+}
+
+.seat-row-seats {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.seat {
+  min-width: 2.5rem;
+  padding: 0.35rem 0.3rem;
+  border-radius: 0.5rem;
+  border: 1px solid #999;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background: #f5f5f5;
+}
+
+.seat-free {}
+
+.seat-selected {
+  background: #cce5ff;
+  border-color: #66a3ff;
+}
+
+.seat-booked {
+  background: #ffd6d6;
+  border-color: #ff8a8a;
+  color: #aa0000;
+  cursor: not-allowed;
+}
+
+.seat legend {
+  cursor: default;
+}
+
+.seat-legend {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  margin-top: 5rem;
+  font-size: 0.85rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.legend .seat {
+  width: 1.6rem;
+  min-width: 1.6rem;
+  height: 1.4rem;
+  padding: 0;
+}
+
+.seat-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.seat-error {
+  color: #b00020;
+}
+
+.seat-success {
+  color: #1c7c2c;
+}
+
+/* Simple buttons if you don't already have global styles */
+.btn-primary,
+.btn-secondary {
+  border-radius: 4px;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #1976d2;
+  color: white;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: #f1f1f1;
+  border-color: #ccc;
+}
+
+/* Booking confirmation page */
+
+.booking-confirmation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.booking-card {
+  text-align: center;
+  padding: 2rem 2.5rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  max-width: 420px;
+  width: 100%;
+}
+
+.booking-title {
+  margin: 0 0 1rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.booking-text {
+  margin: 0.25rem 0;
+  color: #4b5563;
+}

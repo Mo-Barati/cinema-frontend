@@ -12,6 +12,9 @@ import { listCinemas } from "../api/cinemas.js";
 
 import { filterShowtimes } from "../api/showtimes.js";
 
+import { useNavigate } from 'react-router-dom';
+
+
 
 type Showtime = {
   id: number;
@@ -42,6 +45,18 @@ export default function ShowtimesPage() {
   const [cinemaId, setCinemaId] = useState<number | "">("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const navigate = useNavigate();
+
+  function handleViewSeats(row: Showtime) {
+    navigate(`/showtimes/${row.id}/seats`, {
+      state: {
+        movieTitle: row.movieTitle,
+        cinemaName: row.cinemaName,
+        // screenNumber: row.screenNumber, // we don’t have this in the type yet, so skip it
+      },
+    });
+  }
+
 
   // initial load
   useEffect(() => {
@@ -247,7 +262,13 @@ export default function ShowtimesPage() {
         <div className="p-3 rounded-xl bg-red-50 text-red-700 border border-red-200">{error}</div>
       )}
 
-      <ShowtimeTable items={filtered} onDelete={handleDelete} busyId={busyId} />
+      <ShowtimeTable
+        items={filtered}
+        onDelete={handleDelete}
+        busyId={busyId}
+        onViewSeats={handleViewSeats}
+      />
+
     </div>
   );
 }

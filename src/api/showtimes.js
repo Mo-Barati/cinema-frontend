@@ -61,4 +61,30 @@ export async function filterShowtimes({ q, cinemaId, from, to }, signal) {
     return res.json();
 }
 
+// --- Seat map APIs ---
+export async function fetchSeatMap(showtimeId) {
+    const response = await fetch(`${API_BASE}/api/showtimes/${showtimeId}/seats`);
+    if (!response.ok) {
+        throw new Error(`Failed to load seat map: ${response.status}`);
+    }
+    return await response.json();
+}
+
+export async function bookSeats(showtimeId, seatIds) {
+    const response = await fetch(`${API_BASE}/api/showtimes/${showtimeId}/tickets`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ seatIds }),
+    });
+
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(text || `Failed to book seats: ${response.status}`);
+    }
+
+    // 204 No Content → nothing to return
+    return;
+}
 

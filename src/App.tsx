@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import "./App.css";
+import ShowtimeSeats from './pages/ShowtimeSeats';
+
 
 export default function App() {
   return (

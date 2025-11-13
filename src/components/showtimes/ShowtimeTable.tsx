@@ -8,11 +8,13 @@ type Showtime = {
 
 type Props = {
     items: Showtime[];
-    onDelete: (row: Showtime) => Promise<void> | void;
+    onDelete: (row: Showtime) => void;
     busyId: number | null;
+    onViewSeats: (row: Showtime) => void;
 };
 
-export default function ShowtimeTable({ items, onDelete, busyId }: Props) {
+
+export default function ShowtimeTable({ items, onDelete, busyId, onViewSeats }: Props) {
     return (
         <div className="cinema-table-card" style={{ marginTop: 16, maxWidth: 980 }}>
             <table className="cinema-table">
@@ -42,6 +44,16 @@ export default function ShowtimeTable({ items, onDelete, busyId }: Props) {
                                 <td>{new Date(s.endTime).toLocaleString()}</td>
                                 <td style={{ textAlign: "right" }}>
                                     <button
+                                        type="button"
+                                        className="btn-secondary"
+                                        style={{ marginRight: 8 }}
+                                        onClick={() => onViewSeats(s)}
+                                    >
+                                        View Seats
+                                    </button>
+
+                                    <button
+                                        type="button"
                                         onClick={() => onDelete(s)}
                                         disabled={busyId === s.id}
                                         className="danger"
@@ -49,6 +61,7 @@ export default function ShowtimeTable({ items, onDelete, busyId }: Props) {
                                         {busyId === s.id ? "Deleting…" : "Delete"}
                                     </button>
                                 </td>
+
                             </tr>
                         ))
                     )}
