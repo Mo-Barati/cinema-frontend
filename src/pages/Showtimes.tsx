@@ -47,15 +47,29 @@ export default function ShowtimesPage() {
   const [to, setTo] = useState("");
   const navigate = useNavigate();
 
+  function getPosterUrl(title: string): string | undefined {
+    const key = title.trim().toLowerCase();
+
+    switch (key) {
+      case "Oppenheimer":
+        return "/posters/Oppenheimer.jpg";  // 👈 local image from /public
+      default:
+        return undefined;
+    }
+  }
+
+
+
   function handleViewSeats(row: Showtime) {
     navigate(`/showtimes/${row.id}/seats`, {
       state: {
         movieTitle: row.movieTitle,
         cinemaName: row.cinemaName,
-        // screenNumber: row.screenNumber, // we don’t have this in the type yet, so skip it
+        posterUrl: row.posterUrl ?? "/posters/Oppenheimer.jpg",
       },
     });
   }
+
 
 
   // initial load

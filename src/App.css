@@ -333,3 +333,12 @@ h3 {
   margin: 0.25rem 0;
   color: #4b5563;
 }
+
+/* Poster on seat page */
+.movie-poster {
+  margin-top: 0.75rem;
+  width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  object-fit: cover;
+}

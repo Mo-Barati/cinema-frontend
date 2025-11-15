@@ -8,7 +8,9 @@ interface LocationState {
     movieTitle?: string;
     cinemaName?: string;
     screenNumber?: number;
+    posterUrl?: string;   // 👈 add this
 }
+
 
 const ShowtimeSeats: React.FC = () => {
     const { showtimeId } = useParams<{ showtimeId: string }>();
@@ -116,10 +118,19 @@ const ShowtimeSeats: React.FC = () => {
                 <div className="seat-page-title">
                     <h2>{title}</h2>
                     {cinemaName && <p className="seat-page-subtitle">{cinemaName}</p>}
+
+                    {state.posterUrl && (
+                        <img
+                            src={state.posterUrl}
+                            alt={title}
+                            className="movie-poster"
+                        />
+                    )}
                 </div>
             </div>
 
             <div className="seat-screen-banner">{screenLabel}</div>
+
 
             {loading ? (
                 <p>Loading seats...</p>
